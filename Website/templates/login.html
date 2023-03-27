@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <fieldset class="login-form">
+        <form method="POST" action="{{ url_for('login') }}" class="m-5 mt-5">
+            {{ form.hidden_tag() }}
+            <legend class="fs-5 mt-3 border-bottom w-75"> Login </legend>
+                
+            <ul class="m-0">
+                {{ form.userID.label(class="form-text") }}
+                {{ form.userID(class="form-control form-control-lg mt-1") }}
+            </ul>
+
+            <ul>
+                {{ form.password.label(class="form-text") }}
+                {{ form.password(class="form-control form-control-lg mt-1") }}
+            </ul>
+                
+            <div class="form-submit">
+                {{ form.submit(class="btn btn-outline-info m-2 bg-white") }}
+            </div>
+        </form>
+    </fieldset>
+
+{% endblock %}
