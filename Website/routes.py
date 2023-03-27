@@ -22,6 +22,12 @@ with app.app_context():
 page = 0
 
 @app.route('/')
+
+@app.route('/login', methods=['GET','POST'])
+def login():
+    form = LoginForm()
+    return render_template('login.html', form=form)
+    
 @app.route('/home')
 def home():
     return render_template('home.html')
@@ -51,13 +57,4 @@ def exam():
     else:
         return redirect(url_for('home'))
 
-
-@app.route('/login', methods=['GET','POST'])
-def login():
-    form = LoginForm()
-    return render_template('login.html', form=form)
-
-
-#if __name__ == '__main__':
-    #app.run(debug=True)
     

@@ -21,6 +21,11 @@
     background-color:#f2f2f132;
 }
 
+#navbar-item:last-child {
+    float:right;
+    margin-right: 16px;
+}
+
 a:link {
     text-decoration: none;
 }
