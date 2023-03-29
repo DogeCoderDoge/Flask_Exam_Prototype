@@ -47,16 +47,8 @@ li a {
 }
 
 .option{
-    display: table-row;
-    width: fit-content;
-    color: black
-}
-
-.form-question, .form-options{
-    border-style:solid;
-    border-radius: 25px;
-    border-width: 1px;
-    border-color: black;
+    display:contents;
+    color: black;
 }
 
 .form-question {
@@ -65,7 +57,7 @@ li a {
 
 ul {
     list-style: none;
-    background-color: #f0f4f8d2;    
+    background-color: #f0f4f8d2;
 }
 
 .form-submit {
@@ -78,5 +70,4 @@ ul {
     border-width: 1px;
     border-color: black;
     width: 50%;
-    margin: 16px 16px;
 }

@@ -1,7 +1,7 @@
 from Website.main import app
 from Website.forms import LoginForm, QuestionForm
 from Website.models import Question, Option, db
-from flask import render_template, url_for, redirect, request
+from flask import render_template, url_for, redirect, request, session
 
 
 '''

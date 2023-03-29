@@ -2,10 +2,10 @@
 
 {% block content %}
 
-    <fieldset class="login-form">
-        <form method="POST" action="{{ url_for('login') }}" class="m-5 mt-5">
+    <fieldset class="login-form m-3">
+        <form method="POST" action="{{ url_for('login') }}" class="m-5">
             {{ form.hidden_tag() }}
-            <legend class="fs-5 mt-3 border-bottom w-75"> Login </legend>
+            <legend class="fs-5 border-bottom w-75"> Login </legend>
                 
             <ul class="m-0">
                 {{ form.userID.label(class="form-text") }}

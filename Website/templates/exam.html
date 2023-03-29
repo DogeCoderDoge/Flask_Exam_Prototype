@@ -7,18 +7,18 @@
         <fieldset class="form-group">
             <form method="POST" action="{{ url_for('exam') }}" class="m-3">
                 {{ form.hidden_tag() }}
-                <legend class="form-question fs-6">
-                    <p class="m-3 mb-2 border-5">{{ form.question.label }}</p>
+                <legend class="form-question fs-6 border-bottom">
+                    <p class="m-2 mb-2">{{ form.question.label }}</p>
                 </legend>
                 
                 <ul class="form-options">
-                    <p class="form-group">
-                        {{ form.options(class="option m-5") }}
+                    <p class="form-group pt-1">
+                        {{ form.options(class="option") }}
                     </p>
                 </ul>
                 
                 <div class="form-submit">
-                    {{ form.submit(class="btn btn-outline-info m-2 bg-white") }}
+                    {{ form.submit(class="btn btn-outline-info m-2 bg-body-tertiary") }}
                 </div>
             </form>
         </fieldset>   
