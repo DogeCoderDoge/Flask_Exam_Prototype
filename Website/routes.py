@@ -26,6 +26,10 @@ page = 0
 @app.route('/login', methods=['GET','POST'])
 def login():
     form = LoginForm()
+    
+    if form.validate_on_submit():
+        return redirect(url_for('home'))
+
     return render_template('login.html', form=form)
     
 @app.route('/home')

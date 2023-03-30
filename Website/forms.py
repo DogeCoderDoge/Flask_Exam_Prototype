@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, RadioField, StringField, PasswordField
+from wtforms import SubmitField, RadioField, StringField, PasswordField, validators
 
 class QuestionForm(FlaskForm):
     question = StringField()
@@ -13,7 +13,7 @@ class QuestionForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    userID = StringField('User ID')
+    userID = StringField('User ID', validators=[])
     password = PasswordField('Password')
     submit = SubmitField('Login')
 

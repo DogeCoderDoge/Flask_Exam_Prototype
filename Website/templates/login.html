@@ -7,14 +7,14 @@
             {{ form.hidden_tag() }}
             <legend class="fs-5 border-bottom w-75"> Login </legend>
                 
-            <ul class="m-0">
+            <ul>
                 {{ form.userID.label(class="form-text") }}
-                {{ form.userID(class="form-control form-control-lg mt-1") }}
+                {{ form.userID(class="form-control form-control-lg mt-1 w-75") }}
             </ul>
 
             <ul>
                 {{ form.password.label(class="form-text") }}
-                {{ form.password(class="form-control form-control-lg mt-1") }}
+                {{ form.password(class="form-control form-control-lg mt-1 w-75") }}
             </ul>
                 
             <div class="form-submit">
