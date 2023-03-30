@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, RadioField, StringField, PasswordField, validators
+from wtforms.validators import DataRequired
 
 class QuestionForm(FlaskForm):
     question = StringField()
@@ -13,7 +14,7 @@ class QuestionForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    userID = StringField('User ID', validators=[])
-    password = PasswordField('Password')
+    userID = StringField('User ID', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
