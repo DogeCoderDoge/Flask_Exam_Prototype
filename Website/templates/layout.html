@@ -9,11 +9,22 @@
 <body>
     <ul id="navbar">
         <li id="navbar-item"><a href="{{ url_for('home') }}">Home</a></li>
-        <li id="navbar-item"><a href="{{ url_for('exam') }}">Exam</a></li>
-        <li id="navbar-item"><a href="{{ url_for('login') }}">Login</a></li>
+        <li id="navbar-item"><a href="{{ url_for('exam', page=1) }}">Exam</a></li>
+        
+        {% if current_user.is_authenticated %}
+            <li id="navbar-item"><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+            <li id="navbar-item"><a href="{{ url_for('login') }}">Login</a></li>
+        {% endif %}
     </ul>
 
     <div class="pt-5">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% for category, m in messages %}
+                <div class="alert alert-{{ category }} m-4 w-50">{{ m }}</div>
+            {% endfor %}
+        {% endwith %}
+
         {% block content %}
         {% endblock %}
     </div>

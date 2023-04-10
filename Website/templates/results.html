@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    {% if current_user.is_authenticated %}
+        <h3 class="mt-5 m-4">Your Marks: {{ user.marks }}</h3>
+    {% else %}
+        <h1 class="m-4">You can't access this</h1>
+    {% endif %}
+{% endblock %}

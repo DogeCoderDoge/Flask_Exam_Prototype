@@ -1,5 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <h1 class="p-4">login if you want to attend the exam</h1>
+    {% if current_user.is_authenticated %}
+        <h3 class="mt-5 m-4"><a class="mt-5 m-2" href="{{ url_for('exam', page=1) }}">Exam Link</a></h3>
+    {% else %}
+        <h1 class="m-4">Login to attend exam</h1>
+    {% endif %}
 {% endblock %}

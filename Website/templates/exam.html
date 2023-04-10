@@ -3,26 +3,33 @@
 {% block content %}
     <h3 class="pt-5 p-4">exam page</h3>
 
-    <div class="form">
-        <fieldset class="form-group">
-            <form method="POST" action="{{ url_for('exam') }}" class="m-3">
-                {{ form.hidden_tag() }}
-                <legend class="form-question fs-6 border-bottom">
-                    <p class="m-2 mb-2">{{ form.question.label }}</p>
-                </legend>
-                
-                <ul class="form-options">
-                    <p class="form-group pt-1">
-                        {{ form.options(class="option") }}
-                    </p>
-                </ul>
-                
-                <div class="form-submit">
-                    {{ form.submit(class="btn btn-outline-info m-2 bg-body-tertiary") }}
-                </div>
-            </form>
-        </fieldset>   
-    </div>
+    <div class="d-flex">
+        <div class="form w-100">
+            <fieldset class="form-group">
+                <form method="POST" action="{{ url_for('exam', page=page) }}" class="m-3">
+                    {{ form.hidden_tag() }}
+                    <legend class="form-question fs-6 border-bottom">
+                        <p class="m-2 mb-2">{{ form.question.label }}</p>
+                    </legend>
+                    
+                    <ul class="form-options">
+                        <p class="form-group pt-1">
+                            {{ form.options(class="option") }}
+                        </p>
+                    </ul>
+                    
+                    <div class="form-submit">
+                        {{ form.submit(class="btn btn-outline-info m-2 bg-body-tertiary") }}
+                    </div>
+                </form>
+            </fieldset>   
+        </div>
 
+        <div class="question-nav-bar border p-2 m-3 w-25">
+            {% for page_num in q.iter_pages() %}
+                <a href="{{ url_for('exam', page=page_num) }}" class="border p-2 btn-group">{{ page_num }}</a>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}

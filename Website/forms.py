@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 
 class QuestionForm(FlaskForm):
     question = StringField()
-    options = RadioField()
+    options = RadioField(validators=[DataRequired()])
     submit = SubmitField('Submit')
 
     def __init__(self, q, opt):
