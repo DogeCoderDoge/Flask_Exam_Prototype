@@ -82,21 +82,22 @@ def logout():
 @app.route('/exam/<int:page>', methods=['GET', 'POST'])
 @login_required
 def exam(page):
-    q = Question.query.paginate(page=page, per_page=1)
+    if 0 < page <= Question.query.count():
+        q = Question.query.paginate(page=page, per_page=1)
 
-    opt1, opt2 = q.items[0].options
-    form = QuestionForm(str(page) + ") " + q.items[0].content, [opt1.content, opt2.content])
+        opt1, opt2 = q.items[0].options
+        form = QuestionForm(str(page) + ") " + q.items[0].content, [opt1.content, opt2.content])
 
-    if page <= Question.query.count():
         if form.validate_on_submit():
             if request.form.get('options') == q.items[0].answer:
                 print("correct answer", request.form.get('options'))
                 current_user.marks += 1
                 db.session.commit()
                 
-            return redirect(url_for('exam', page=page+1))
+            if page < Question.query.count(): return redirect(url_for('exam', page=page+1))
+            else: return redirect(url_for('exam', page=page))
 
-        return render_template('exam.html', form=form, page=page, q=q)
+        return render_template('exam.html', form=form, page=page, q=q, q_count=Question.query.count())
 
     else:
         return redirect(url_for('home'))

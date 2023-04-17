@@ -1,6 +1,24 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+    <div class="modal fade" id="finishTestModal" tabindex="-1" aria-labelledby="finishTestModalLabel" aria-hidden="true">
+        <div class="modal-dialog bg-info-subtle">
+            <div class="modal-content">
+                <div class="modal-header bg-body-emphasis">
+                    <h1 class="modal-title fs-5 bg-body-emphasis" id="finishTestModalLabel">Are you sure you want to finish the test?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-body-tertiary">
+                    Your answers cannot be changed once submitted, choose carefully!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a class="btn btn-primary" href="{{ url_for('result') }}">Finish</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <h3 class="pt-5 p-4">exam page</h3>
 
     <div class="d-flex">
@@ -17,9 +35,20 @@
                             {{ form.options(class="option") }}
                         </p>
                     </ul>
-                    
+
                     <div class="form-submit">
-                        {{ form.submit(class="btn btn-outline-info m-2 bg-body-tertiary") }}
+                        {{ form.submit(class="btn btn-outline-info m-2 bg-body-emphasis mt-3") }}
+                        <button type="button" class="btn btn-primary float-end m-2 mt-3" data-bs-toggle="modal" data-bs-target="#finishTestModal">
+                            Finish
+                        </button>
+
+                        {% if page < q_count %} 
+                            <a href="{{ url_for('exam', page=page+1) }}" class="border p-2 btn-group m-2 mt-3 float-end">Next</a>
+                        {% endif %}
+                        
+                        {% if page > 1 %} 
+                            <a href="{{ url_for('exam', page=page-1) }}" class="border p-2 btn-group m-2 mt-3 float-end">Previous</a> 
+                        {% endif %}
                     </div>
                 </form>
             </fieldset>   
@@ -27,7 +56,11 @@
 
         <div class="question-nav-bar border p-2 m-3 w-25">
             {% for page_num in q.iter_pages() %}
-                <a href="{{ url_for('exam', page=page_num) }}" class="border p-2 btn-group">{{ page_num }}</a>
+                {% if page == page_num %}
+                    <strong><a href="{{ url_for('exam', page=page_num) }}" class="border p-2 btn-group bg-white">{{ page_num }}</a></strong>
+                {% else %}
+                    <a href="{{ url_for('exam', page=page_num) }}" class="border p-2 btn-group">{{ page_num }}</a>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
